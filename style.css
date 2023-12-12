@@ -1,3 +1,41 @@
+body {
+    background-image: url(slike/Pokémon.full.3234916.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+#overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(5, 0, 0, 0.9);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.pokemon-container {
+    display: flex;
+    gap: 20px;
+}
+
+.pokemon-element {
+    text-align: center;
+    color: white;
+}
+
+#overlay button {
+    background: rgb(102, 103, 102);
+    color: white;
+    border: none;
+    padding: 10px;
+    font-size: 1.2em;
+    cursor: pointer;
+}
 
 
   
