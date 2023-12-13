@@ -1,41 +1,88 @@
 body {
+    font-family: Arial, sans-serif;
     background-image: url(slike/Pokémon.full.3234916.jpg);
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+    margin: 0;
+    padding: 20px;
+    text-align: center;
 }
 
-#overlay {
+label {
+    color: rgb(45, 21, 107);
+    display: block;
+    font-size: 18px;
+    margin-bottom: 30px;
+    margin-top: 20px;
+}
+
+#pokemonInput {
+    padding: 10px;
+    font-size: 20px;
+    box-shadow: 0px 0px 8px 6px rgb(13, 141, 52);
+}
+
+#pokemonDetails {
+    margin-top: 60px;
+}
+
+h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+
+  #pokemonImage {
+    max-width: 300px;
+    height: auto;
+    margin-bottom: 10px;
+  }
+
+  #pokemonName {
+    font-size: 18px;
+  }
+
+  #overlay-container {
     display: none;
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(5, 0, 0, 0.9);
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-}
+    bottom: 10px; /* Justera efter behov */
+    left: 50%;
+    transform: translateX(-50%);
+  }
 
-.pokemon-container {
+  #overlay {
     display: flex;
-    gap: 20px;
-}
+    justify-content: space-around;
+    align-items: center;
+  }
 
-.pokemon-element {
-    text-align: center;
-    color: white;
-}
-
-#overlay button {
-    background: rgb(102, 103, 102);
-    color: white;
-    border: none;
-    padding: 10px;
-    font-size: 1.2em;
+  .pokemon-box {
+    width: 100px;
+    height: 100px;
+    background-color: #fff;
+    border: 2px solid #000;
+    margin: 10px;
     cursor: pointer;
-}
+  }
+
+  #nicknameInput {
+    padding: 5px;
+    margin-bottom: 10px;
+  }
+
+  button {
+    padding: 10px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+   
+
+
+
+
+
+
+
+
+
+
 
 
   

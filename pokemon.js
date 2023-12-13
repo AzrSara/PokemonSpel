@@ -1,180 +1,105 @@
-// Create fetchData function to fetch the data from the Pokemon API
-function fetchData(url) {
-    return fetch(url).then(response => response.json());
-}
-
-// Create addPokemonToDOM to add the Pokemon to select DOM element
-function addPokemonToDOM(pokemon, selectEl, content1, overlay) {
-    let output = ""; // Initialize output as an empty string
-    pokemon.results.forEach(singlePokemon => {
-        output += `
-        <option value="${singlePokemon.name}">${singlePokemon.name}</option>
-        `;
-    });
-    selectEl.innerHTML = output;
-
-    // Add event listener for the change of the selected options
-    selectEl.addEventListener('change', event => {
-        fetchData('https://pokeapi.co/api/v2/pokemon?limit=151').then(
-            pokemonData => {
-                pokemonData.results.forEach(result => {
-                    if (event.target.value === result.name) {
-                        const pokemonURL = result.url;
-                        fetchData(pokemonURL).then(data => {
-                            console.log(data);
-                            const imagesData = data.sprites.other.dream_world.front_default;
-                            image.src = imagesData;
-
-                            // Update content1 to display the selected Pokemon in a dark transparent box
-                            content1.innerHTML = `
-                                <div class="dark-box">
-                                    <img src="${imagesData}" alt="${result.name}">
-                                    <p>${result.name}</p>
-                                </div>
-                            `;
-
-                            // Show the overlay when a Pokemon is selected
-                            overlay.style.display = 'flex';
-                        });
-                    }
-                });
-            },
-        );
-    });
-}
-
-// Create the main function that contains the DOM elements and executes the fetch data and adds elements to the DOM
-function main() {
-    // Needed DOM elements: button, select, and options (will be added inside the
-
-    // 1. Creating DOM elements
-    const container = document.createElement('div');
-    const button = document.createElement('button');
-    const selectEl = document.createElement('select');
-    const image = document.createElement('img');
-    const content1 = document.createElement('div');
-    const overlay = createOverlay(); // Added overlay creation
-
-    // 2. Appending DOM elements to the document body
-    document.body.appendChild(container);
-
-    container.appendChild(button);
-    container.appendChild(selectEl);
-    container.appendChild(content1);
-
-     // Add event listener for click event of the button
-	 button.addEventListener('click', () => {
-        fetchData('https://pokeapi.co/api/v2/pokemon?limit=151').then(
-            pokemonData => {
-                addPokemonToDOM(pokemonData, selectEl, content1, overlay);
-            },
-        );
-    });
-
-    // Add event listener for the change of the selected options
-    selectEl.addEventListener('change', event => {
-        fetchData('https://pokeapi.co/api/v2/pokemon?limit=151').then(
-            pokemonData => {
-                pokemonData.results.forEach(result => {
-                    if (event.target.value === result.name) {
-                        const pokemonURL = result.url;
-                        fetchData(pokemonURL).then(data => {
-                            console.log(data);
-                            const imagesData = data.sprites.other.dream_world.front_default;
-                            image.src = imagesData;
-                            content1.innerHTML = ""; // Clear previous content
-                            content1.appendChild(image);
-
-                            // Add a button to add the selected Pokemon to the overlay
-                            const addToOverlayButton = document.createElement('button');
-                            addToOverlayButton.textContent = 'Add Pokemon';
-                            addToOverlayButton.addEventListener('click', () => {
-                                addPokemonToOverlay(data, overlay);
-                                overlay.style.display = 'flex';
-                            });
-                            content1.appendChild(addToOverlayButton);
-                        });
-                    }
-                });
-            },
-        );
-    });
-
-    // Adding styling to the app
-    container.style.display = 'flex';
-    container.style.flexDirection = 'column';
-    container.style.width = '30vw';
-    container.style.height = '90vh';
-    container.style.margin = 'auto';
-    content1.style.marginTop = '50px';
-    button.textContent = 'Get Pokemon!';
-    button.style.marginBottom = '10px';
-    button.style.background = 'green';
-    button.style.border = 'none';
-    button.style.height = '30px';
-    button.style.color = 'white';
-    button.style.fontSize = '1.2em';
-    selectEl.style.background = 'lightBlue';
-    selectEl.style.height = '30px';
-    selectEl.style.color = 'darkBlue';
-    selectEl.style.fontSize = '1.2em';
-    selectEl.style.border = 'none';
-    selectEl.style.paddingLeft = '10px';
-    image.style.width = '70%';
-    image.style.height = '70%';
-}
-
-// Function to create the overlay
-function createOverlay() {
-    const overlay = document.createElement('div');
-    overlay.id = 'overlay';
-    overlay.style.display = 'none'; // Initially hide the overlay
-
-    const closeButton = document.createElement('button');
-    closeButton.textContent = 'Close';
-    closeButton.addEventListener('click', () => {
-        overlay.style.display = 'none'; // Hide the overlay when the close button is clicked
-    });
-
-    overlay.appendChild(closeButton);
-
-    document.body.appendChild(overlay);
-    return overlay;
-}
-
-// Function to add Pokemon to the overlay
-function addPokemonToOverlay(pokemon, overlay) {
-    const pokemonContainer = document.createElement('div');
-    pokemonContainer.classList.add('pokemon-container');
-
-    const pokemonElement = document.createElement('div');
-    pokemonElement.classList.add('pokemon-element');
-    pokemonElement.innerHTML = `
-        <img src="${pokemon.sprites.other.dream_world.front_default}" alt="${pokemon.name}">
-        <p>${pokemon.name}</p>
-    `;
-
-    // Add a click event listener to remove the Pokemon when clicked
-    pokemonElement.addEventListener('click', () => {
-        overlay.removeChild(pokemonContainer);
-    });
-
-    pokemonContainer.appendChild(pokemonElement);
-
-    // Check if there are already 3 Pokemon in the overlay, remove the oldest one if needed
-    const existingPokemonCount = overlay.querySelectorAll('.pokemon-element').length;
-    if (existingPokemonCount >= 3) {
-        const pokemonElements = overlay.querySelectorAll('.pokemon-element');
-        overlay.removeChild(pokemonElements[0]); // Remove the oldest Pokemon
+document.addEventListener('DOMContentLoaded', function () {
+    const pokemonInput = document.getElementById('pokemonInput');
+    const pokemonList = document.getElementById('pokemonList');
+    const pokemonDetails = document.getElementById('pokemonDetails');
+    const pokemonImage = document.getElementById('pokemonImage');
+    const pokemonName = document.getElementById('pokemonName');
+    const addToTeamButton = document.getElementById('addToTeamButton');
+    const overlayContainer = document.getElementById('overlay-container');
+    const pokemonBoxes = document.querySelectorAll('.pokemon-box');
+    const nicknameInput = document.getElementById('nicknameInput');
+  
+    const team = []; // Array för att lagra Pokémon i laget
+  
+    fetch('https://pokeapi.co/api/v2/pokemon?limit=151')
+      .then(response => response.json())
+      .then(data => {
+        const pokemonNames = data.results.map(pokemon => pokemon.name).sort();
+        pokemonNames.forEach(name => pokemonList.innerHTML += `<option value="${name}">`);
+  
+        pokemonInput.addEventListener('input', function () {
+          const selectedPokemon = pokemonInput.value.toLowerCase();
+          fetch(`https://pokeapi.co/api/v2/pokemon/${selectedPokemon}`)
+            .then(response => response.json())
+            .then(pokemonData => {
+              pokemonName.textContent = `Name: ${pokemonData.name}`;
+              pokemonImage.src = pokemonData.sprites.front_default;
+              pokemonImage.alt = `${pokemonData.name} Image`;
+            })
+            .catch(error => console.error('Error fetching Pokemon details:', error));
+        });
+  
+        addToTeamButton.addEventListener('click', function () {
+          const selectedPokemon = pokemonName.textContent;
+          const selectedPokemonImage = pokemonImage.src;
+          const nickname = nicknameInput.value.trim();
+  
+          if (team.length < 3) {
+            const newPokemon = { name: selectedPokemon, nickname: nickname, image: selectedPokemonImage };
+            team.push(newPokemon);
+  
+            // Uppdatera Pokemon-boxarna
+            updatePokemonBoxes();
+  
+            // Återställ input för smeknamn
+            nicknameInput.value = '';
+          } else {
+            alert('Team is full. Remove a Pokémon before adding more.');
+          }
+        });
+  
+        // Lägg till händelselyssnare för att ta bort Pokemon från laget
+        pokemonBoxes.forEach((box, index) => {
+          box.addEventListener('click', function () {
+            if (index < team.length) {
+              team.splice(index, 1); // Ta bort Pokemon från laget
+              updatePokemonBoxes(); // Uppdatera Pokemon-boxarna
+            }
+          });
+        });
+  
+        overlayContainer.addEventListener('click', event => {
+          if (event.target === overlayContainer) {
+            overlayContainer.style.display = 'none';
+            if (team.length === 0) {
+              pokemonDetails.style.display = 'none'; // Dölj även detaljsektionen om laget är tomt
+            }
+          }
+        });
+      })
+      .catch(error => console.error('Error fetching Pokemon data:', error));
+  
+    // Uppdatera Pokemon-boxarna med aktuella laget
+    function updatePokemonBoxes() {
+      pokemonBoxes.forEach((box, index) => {
+        if (index < team.length) {
+          const { name, nickname, image } = team[index];
+          box.innerHTML = `<p>${nickname ? `${nickname} (${name})` : name}</p><img src="${image}" alt="${name} Image">`;
+        } else {
+          box.innerHTML = '';
+        }
+      });
+  
+      // Visa overlayen och Pokemon-boxarna när användaren lägger till eller tar bort en Pokemon i laget
+      overlayContainer.style.display = team.length > 0 ? 'flex' : 'none';
+  
+      // Visa detaljsektionen om laget inte är tomt
+      pokemonDetails.style.display = team.length > 0 ? 'block' : 'none';
     }
+  });
+  
+  
+  
+  
 
-    overlay.appendChild(pokemonContainer);
-}
+  
+  
+  
 
-// Calling the main function
-main();
-
-
-
-
-
+  
+  
+  
+  
+  
+  
+  

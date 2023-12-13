@@ -1,25 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" type="text/css" href="style.css">
-	
-	
-	  <title>Pokemon Team</title>
-	</head>
-	<body>
-	    <script src="pokemon.js"></script>
-    <div id="overlay-container">
-	
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>Pokemon Team</title>
+</head>
+<body>
 
-        
+	<label for="pokemonInput">Choose a Pokemon:</label>
+  <input type="text" id="pokemonInput" list="pokemonList">
+  <datalist id="pokemonList"></datalist>
+  <div id="pokemonDetails">
+    <h2>Pokemon Details</h2>
+    <img id="pokemonImage" alt="Pokemon Image">
+    <p id="pokemonName"></p>
+    <input type="text" id="nicknameInput" placeholder="Enter nickname">
+    <button id="addToTeamButton">Add to Team</button>
+  </div>
+
+  
+
+    <div id="overlay-container">
         <div id="overlay">
-            
+            <div class="pokemon-box" id="pokemon-box-1"></div>
+            <div class="pokemon-box" id="pokemon-box-2"></div>
+            <div class="pokemon-box" id="pokemon-box-3"></div>
         </div>
     </div>
-	
 
-
+    <script src="pokemon.js"></script>
 </body>
 </html>
