@@ -28,7 +28,7 @@ label {
 }
 
 #pokemonDetails {
-    margin-top: 60px;
+    margin-top: 100px;
     text-shadow: 1px 2px 8px rgb(17, 57, 29);
     color: rgb(9, 109, 9);
 }
@@ -39,21 +39,24 @@ h2 {
 }
 
 #pokemonImage {
-    width: 100px;
+       width: 100px;
+    
     
 }
 
 #pokemonName {
     font-size: 25px;
-    color: green;
+    color: rgb(154, 120, 11);
+    
 }
 
 #overlay-container {
-    display: none;
-    position: fixed;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 5; 
+
 }
 
 #overlay {
@@ -65,30 +68,33 @@ h2 {
     border-radius: 25px;
     border: 10px solid black;
     z-index: 5;
-    opacity: 0.5; 
+    opacity: 1; 
     background-color: rgba(96, 91, 91, 0.5);
 }
 
 
 #nicknameInput {
-    padding: 5px;
-    margin-bottom: 25px;
-    border-radius: 25px;
-    box-shadow: 0px 0px 8px 6px rgb(13, 141, 52);
-    color: rgb(50, 13, 13);
-    
+  padding: 5px;
+  border-radius: 25px;
+  box-shadow: 0px 0px 8px 6px rgb(13, 141, 52);
+  color: rgb(50, 13, 13);
+  margin-top: 10px; 
 }
+    
+
 
 button {
   border: none;
-  border-radius: 25px;
-  padding: 5px;
-  margin: 10px;
-  font-size: 15px;
-  box-shadow: 0px 0px 8px 6px rgb(13, 141, 52);
-  color: rgb(23, 1, 1);
-  background-color: rgb(47, 255, 64);
+    border-radius: 25px;
+    padding: 5px;
+    margin: 10px;
+    font-size: 15px;
+    box-shadow: 0px 0px 8px 6px rgb(13, 141, 52);
+    color: rgb(23, 1, 1);
+    background-color: rgb(47, 255, 64);
+    margin-top: 10px; */
 }
+
 
 @media only screen and (max-width: 600px) {
   body {
@@ -98,19 +104,28 @@ button {
 
     #pokemonInput {
         font-size: 16px; 
+        color: rgb(2, 23, 16);
     }
 
     #pokemonDetails {
-        margin-top: 30px; 
-    }
+      margin-top: 100px;
+      text-shadow: 1px 2px 8px rgb(17, 57, 29);
+      color: rgb(9, 109, 9);
+      position: relative; 
+      z-index: 10; 
+  }
+        
+    
 
     h2 {
-        font-size: 24px; 
+        font-size: 25px; 
     }
 
     #pokemonImage {
         width: 80px; 
+        
     }
+
 
     #error {
       color: red;
@@ -140,4 +155,3 @@ button {
 
 
 
-  
