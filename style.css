@@ -1,6 +1,6 @@
 
 body {
-  font-family: monospace;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
   background-image: url(slike/stars.webp);
   background-size: cover; 
   margin: 0;
@@ -27,22 +27,18 @@ label {
     color: rgb(192, 14, 14);
 }
 
-#pokemonDetails {
-    margin-top: 100px;
-    text-shadow: 1px 2px 8px rgb(17, 57, 29);
-    color: rgb(9, 109, 9);
-}
+
 
 h2 {
-    font-size: 30px;
+    font-size: 15px;
     margin-bottom: 5px;
 }
 
-#pokemonImage {
-       width: 100px;
+
+       
     
     
-}
+
 
 #pokemonName {
     font-size: 25px;
@@ -63,6 +59,7 @@ h2 {
     display: flex;
     justify-content: space-around;
     align-items: center;
+    width: 500px;
     margin-top: 60px;
     background-color: rgb(58, 56, 56);
     border-radius: 25px;
@@ -92,15 +89,11 @@ button {
     box-shadow: 0px 0px 8px 6px rgb(13, 141, 52);
     color: rgb(23, 1, 1);
     background-color: rgb(47, 255, 64);
-    margin-top: 10px; */
-}
+    margin-top: 10px; 
+   }
 
 
-@media only screen and (max-width: 600px) {
-  body {
-    background-size: contain; 
-  }
-}
+
 
     #pokemonInput {
         font-size: 16px; 
@@ -108,9 +101,9 @@ button {
     }
 
     #pokemonDetails {
-      margin-top: 100px;
+      margin-top: 60px;
       text-shadow: 1px 2px 8px rgb(17, 57, 29);
-      color: rgb(9, 109, 9);
+      color: rgb(239, 127, 35);
       position: relative; 
       z-index: 10; 
   }
@@ -122,9 +115,9 @@ button {
     }
 
     #pokemonImage {
-        width: 80px; 
-        
-    }
+      max-width: 100%;
+      height: auto;
+  }
 
 
     #error {
@@ -133,19 +126,25 @@ button {
     
     #messageContainer {
       display: none;
-      padding: 10px;
-      margin-top: 10px;
-      border: 1px solid #ccc;
+      
+     padding: 10px;
+      margin-top: 8px;
+      border: none;
     }
     
     #messageContainer.error {
       display: block; 
-      background-color: #807676;
+      background-color: none;
+      color: rgb(255, 0, 47);
     }
    
 
 
-
+    @media only screen and (max-width: 600px) {
+      body {
+        background-size: contain; 
+      }
+    }
 
 
 
