@@ -7,14 +7,30 @@ document.addEventListener('DOMContentLoaded', function () {
     const addToTeamButton = document.getElementById('addToTeamButton');
     const overlayContainer = document.getElementById('overlay-container');
     const messageContainer = document.getElementById('messageContainer');
+    const nicknameInput = document.getElementById('nicknameInput');
     const team = [];
 
-
-    function showMessage(message, isError = false) {
+    function showMessage(message, isError = false, isRemainingPokemonMessage = false) {
         messageContainer.textContent = message;
-        messageContainer.classList.toggle('error', isError);
+
+        if (isError) {
+            // Apply styles for error messages
+            messageContainer.style.backgroundColor = '#f44336'; // Background color for error messages
+            messageContainer.style.color = 'white'; // Text color for error messages
+        } else if (isRemainingPokemonMessage) {
+            // Apply styles for remaining Pokemon messages
+            messageContainer.style.backgroundColor = '#333'; // Background color for remaining Pokemon messages
+            messageContainer.style.color = '#ff9800'; // Text color for remaining Pokemon messages
+        } else {
+            // Reset styles for regular messages
+            messageContainer.style.backgroundColor = '#4CAF50'; // Background color for regular messages
+            messageContainer.style.color = 'white'; // Text color for regular messages
+        }
+
         messageContainer.style.display = 'block';
-        setTimeout(() => { messageContainer.style.display = 'none'; }, 5000);
+        setTimeout(() => {
+            messageContainer.style.display = 'none';
+        }, 8000);
     }
 
     function fetchPokemonData(url) {
@@ -75,8 +91,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
                         pokemonImage.src = pokemonData.sprites.front_default;
                         pokemonImage.alt = `${pokemonData.name} Image`;
-                        pokemonImage.style.width = '150px';
-                        pokemonImage.style.height = '150px';
+                        pokemonImage.style.width = '130px';
+                        pokemonImage.style.height = '130px';
                     });
             });
 
@@ -90,14 +106,16 @@ document.addEventListener('DOMContentLoaded', function () {
                     team.push(newPokemon);
                     updatePokemonBoxes();
 
-                  
                     overlayContainer.style.display = team.length > 0 ? 'flex' : 'none';
-                } else {
-                    showMessage('Team is full. Remove a Pokémon before adding more.', true);
+
+                    if (team.length < 3) {
+                        const remainingPokemon = 3 - team.length;
+                        showMessage(`Add ${remainingPokemon} more Pokémon to complete your team.`, false, true);
+                    } else {
+                        showMessage('Team is full. Remove a Pokémon before adding more.');
+                    }
                 }
             });
-
-           
 
             document.addEventListener('click', event => {
                 if (event.target === overlayContainer) {
