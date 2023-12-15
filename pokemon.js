@@ -7,7 +7,6 @@ document.addEventListener('DOMContentLoaded', function () {
     const addToTeamButton = document.getElementById('addToTeamButton');
     const overlayContainer = document.getElementById('overlay-container');
     const messageContainer = document.getElementById('messageContainer');
-    const resetTeamButton = document.getElementById('resetTeamButton');
     const team = [];
 
 
@@ -98,9 +97,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
             });
 
-            resetTeamButton.addEventListener('click', function () {
-                resetTeam();
-            });
+           
 
             document.addEventListener('click', event => {
                 if (event.target === overlayContainer) {
