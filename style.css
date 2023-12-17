@@ -97,10 +97,10 @@ button {
 }
 
 #pokemonDetails {
-   margin-top: 10px;
-   text-shadow: 1px 2px 8px rgb(17, 57, 29);
-    color: rgb(94, 184, 49);
-  
+  display: none; /* Add this line to hide the container initially */
+  margin-top: 10px;
+  text-shadow: 1px 2px 8px rgb(17, 57, 29);
+  color: rgb(94, 184, 49);
 }
 
 
