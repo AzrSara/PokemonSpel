@@ -99,32 +99,39 @@ document.addEventListener('DOMContentLoaded', function () {
 
   addToReserveButton.addEventListener('click', function () {
     const selectedPokemon = pokemonName.textContent;
-    const selectedPokemonImage = pokemonImage.src;
-    const nickname = nicknameInput.value.trim();
-
-    const newPokemon = { name: selectedPokemon, nickname: nickname, image: selectedPokemonImage };
-    reserve.push(newPokemon);
-    updateReserveList();
+    if (selectedPokemon) {
+      const selectedPokemonImage = pokemonImage.src;
+      const nickname = nicknameInput.value.trim();
+      const newPokemon = { name: selectedPokemon, nickname: nickname, image: selectedPokemonImage };
+      reserve.push(newPokemon);
+      updateReserveList();
+    } else {
+      showMessage('Please select a Pokémon before adding to reserve.', true);
+    }
   });
 
   addToTeamButton.addEventListener('click', function () {
     const selectedPokemon = pokemonName.textContent;
-    const selectedPokemonImage = pokemonImage.src;
-    const nickname = nicknameInput.value.trim();
-
-    if (team.length < 3) {
-      const newPokemon = { name: selectedPokemon, nickname: nickname, image: selectedPokemonImage };
-      team.push(newPokemon);
-      updatePokemonBoxes();
-
-      overlayContainer.style.display = team.length > 0 ? 'flex' : 'none';
+    if (selectedPokemon) {
+      const selectedPokemonImage = pokemonImage.src;
+      const nickname = nicknameInput.value.trim();
 
       if (team.length < 3) {
-        const remainingPokemon = 3 - team.length;
-        showMessage(`Add ${remainingPokemon} more Pokémon to complete your team.`, false, true);
-      } else {
-        showMessage('Team is full. Remove a Pokémon before adding more.');
+        const newPokemon = { name: selectedPokemon, nickname: nickname, image: selectedPokemonImage };
+        team.push(newPokemon);
+        updatePokemonBoxes();
+
+        overlayContainer.style.display = team.length > 0 ? 'flex' : 'none';
+
+        if (team.length < 3) {
+          const remainingPokemon = 3 - team.length;
+          showMessage(`Add ${remainingPokemon} more Pokémon to complete your team.`, false, true);
+        } else {
+          showMessage('Team is full. Remove a Pokémon before adding more.');
+        }
       }
+    } else {
+      showMessage('Please select a Pokémon before adding to team.', true);
     }
   });
 
@@ -159,6 +166,7 @@ document.addEventListener('DOMContentLoaded', function () {
       });
     });
 });
+
 
 
 
