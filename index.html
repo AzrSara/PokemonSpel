@@ -1,3 +1,6 @@
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,10 +21,12 @@
   <input type="text" id="nicknameInput" placeholder="Enter nickname">
   <button id="addToTeamButton">Add to Team</button>
   <div id="messageContainer" style="display: none;"></div>
+
   <section id="reserveSection">
     <h2>Reserve Pokémon</h2>
-    <div id="reserveList" class="pokemon-box-overlay"></div>
     <button id="addToReserveButton">Add to Reserve</button>
+    <div id="reserveList" class="pokemon-row"></div>
+   
   </section>
 
   <div id="pokemonDetails">
@@ -37,12 +42,9 @@
       <div class="pokemon-box" id="pokemon-box-3"></div>
     </div>
 
-  
+    <div id="messageContainer" style="display: none;"></div>
+  </div>
 
-  
- 
-
-  <div id="messageContainer" style="display: none;"></div>
 </body>
 
 </html>

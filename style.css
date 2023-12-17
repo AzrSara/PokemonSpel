@@ -1,7 +1,7 @@
 body {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   background-image: url(slike/stars.webp);
-  background-size: cover; 
+  background-size: cover;
   margin: 0;
   padding: 20px;
   text-align: center;
@@ -9,40 +9,39 @@ body {
 }
 
 label {
-    color: rgb(168, 17, 17);
-    display: block;
-    font-size: 18px;
-    margin-bottom: 30px;
-    margin-top: 20px;
-    text-shadow: 0px 1px 5px rgb(133, 70, 70);
+  color: rgb(168, 17, 17);
+  display: block;
+  font-size: 18px;
+  margin-bottom: 30px;
+  margin-top: 20px;
+  text-shadow: 0px 1px 5px rgb(133, 70, 70);
 }
 
 #pokemonInput {
-    border: none;
-    border-radius: 25px;
-    padding: 10px;
-    font-size: 20px;
-    box-shadow: 0px 0px 8px 6px rgb(13, 141, 52);
-    color: rgb(192, 14, 14);
+  border: none;
+  border-radius: 25px;
+  padding: 10px;
+  font-size: 20px;
+  box-shadow: 0px 0px 8px 6px rgb(13, 141, 52);
+  color: rgb(192, 14, 14);
 }
 
 h2 {
-    font-size: 15px;
-    margin-bottom: 5px;
+  font-size: 15px;
+  margin-bottom: 5px;
 }
 
 #pokemonName {
-    font-size: 25px;
-    color: rgb(154, 120, 11);
+  font-size: 25px;
+  color: rgb(154, 120, 11);
 }
 
 #overlay-container {
   position: fixed;
   bottom: 20px;
-
   left: 50%;
   transform: translateX(-50%);
-  z-index: 5; 
+  z-index: 5;
 }
 
 #overlay {
@@ -53,14 +52,11 @@ h2 {
   background-color: rgb(58, 56, 56);
   border-radius: 15px;
   z-index: 5;
-  opacity: 1; 
+  opacity: 1;
   background-color: rgba(90, 237, 100, 0.5);
-
- 
 }
 
 .pokemon-box-overlay {
-  
   font-family: monospace;
   font-size: 14px;
   color: #d4cfcf;
@@ -69,11 +65,10 @@ h2 {
 }
 
 .pokemon-box-overlay img {
-  width: 60px; 
+  width: 60px;
   height: auto;
   margin-bottom: 5px;
 }
-
 
 #nicknameInput {
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
@@ -81,7 +76,7 @@ h2 {
   border-radius: 25px;
   box-shadow: 0px 0px 8px 6px rgb(13, 141, 52);
   color: rgb(50, 13, 13);
-  margin-top: 10px; 
+  margin-top: 10px;
 }
 
 button {
@@ -93,35 +88,32 @@ button {
   box-shadow: 0px 0px 8px 6px rgb(13, 141, 52);
   color: rgb(23, 1, 1);
   background-color: rgb(47, 255, 64);
-  margin-top: 10px; 
+  margin-top: 10px;
 }
 
 #pokemonInput {
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    font-size: 12px; 
-    color: rgb(2, 23, 16);
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 12px;
+  color: rgb(2, 23, 16);
 }
 
 #pokemonDetails {
   margin-top: 60px;
   text-shadow: 1px 2px 8px rgb(17, 57, 29);
   color: rgb(228, 136, 61);
-  position: relative; 
-  z-index: 10; 
+  position: relative;
+  z-index: 10;
 }
 
 h2 {
-    font-size: 20px; 
+  font-size: 20px;
 }
 
 #pokemonName {
   font-size: 20px;
   color: rgb(154, 120, 11);
   font-family: 'Arial', sans-serif;
-  
 }
-
-
 
 #messageContainer {
   display: none;
@@ -130,11 +122,35 @@ h2 {
   border: none;
 }
 
+#reserveSection {
+  margin-top: 15px;
+  
+}
 
+#reserveList {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin: 70px;
+}
+
+.reserve-pokemon-box {
+  flex: 0 0 calc(33.333% - 10px);
+  margin: 5px;
+  box-sizing: border-box;
+  text-align: center;
+  overflow: hidden;
+}
+
+.reserve-pokemon-box img {
+  width: 30%;
+  height: auto;
+}
 
 @media only screen and (max-width: 600px) {
-  body {
-    background-size: contain; 
+  .reserve-pokemon-box {
+    flex: 0 0 calc(50% - 10px);
   }
-} 
+}
+
 
