@@ -2,6 +2,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" type="text/css" href="style.css">
+
   <script type="module" src="pokemon.js" defer></script>
   <link rel="icon" type="png" href="slike/favicon.png">
   <title>Pokemon Team</title>
@@ -17,6 +18,11 @@
   <input type="text" id="nicknameInput" placeholder="Enter nickname">
   <button id="addToTeamButton">Add to Team</button>
   <div id="messageContainer" style="display: none;"></div>
+  <section id="reserveSection">
+    <h2>Reserve Pokémon</h2>
+    <div id="reserveList" class="pokemon-box-overlay"></div>
+    <button id="addToReserveButton">Add to Reserve</button>
+  </section>
 
   <div id="pokemonDetails">
     <h2>Pokemon Details</h2>
@@ -30,7 +36,10 @@
       <div class="pokemon-box" id="pokemon-box-2"></div>
       <div class="pokemon-box" id="pokemon-box-3"></div>
     </div>
-  </div>
+
+  
+
+  
  
 
   <div id="messageContainer" style="display: none;"></div>
