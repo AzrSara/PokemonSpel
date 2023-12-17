@@ -97,11 +97,9 @@ button {
 }
 
 #pokemonDetails {
-  display: flex;
-  justify-content: space-evenly;
-  margin-top: 10px;
-  text-shadow: 1px 2px 8px rgb(17, 57, 29);
-  color: rgb(94, 184, 49);
+   margin-top: 10px;
+   text-shadow: 1px 2px 8px rgb(17, 57, 29);
+    color: rgb(94, 184, 49);
   
 }
 
@@ -118,6 +116,7 @@ button {
   padding: 10px;
   margin-top: 6px;
   border: none;
+  height: 20px;
 }
 
 #reserveSection {
@@ -133,9 +132,13 @@ button {
 .reserve-pokemon-box {
   flex: 0 0 calc(33% - 10px);
   margin: 5px;
-  box-sizing: border-box;
+  box-sizing: content-box;
   text-align: center;
   overflow: hidden;
+  color: rgb(94, 184, 49);
+  background-color: blueviolet;border-radius: 20px;
+
+  
 }
 
 .reserve-pokemon-box img {
