@@ -13,7 +13,11 @@
 
 <body>
   <label for="pokemonInput">
-    <h2>Choose a Pokemon:</h2>
+    <div id="pokemonDetails">
+      <h2>Pokemon Details</h2>
+      <img id="pokemonImage" alt="Pokemon Image">
+      <p id="pokemonName"></p>
+    </div>
   </label>
   <input type="text" id="pokemonInput" list="pokemonList">
   <datalist id="pokemonList"></datalist>
@@ -29,11 +33,7 @@
    
   </section>
 
-  <div id="pokemonDetails">
-    <h2>Pokemon Details</h2>
-    <img id="pokemonImage" alt="Pokemon Image">
-    <p id="pokemonName"></p>
-  </div>
+  
 
   <div id="overlay-container">
     <div id="overlay">

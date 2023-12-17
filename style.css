@@ -45,16 +45,15 @@ h2 {
 }
 
 #overlay {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  width: 400px;
-  background-color: rgb(58, 56, 56);
-  border-radius: 15px;
-  z-index: 5;
-  opacity: 1;
-  background-color: rgba(90, 237, 100, 0.5);
-}
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 400px;
+    background-color: rgb(58, 56, 56);
+    border-radius: 15px;
+    z-index: 5;
+    opacity: 1; 
+  }
 
 .pokemon-box-overlay {
   font-family: monospace;
@@ -123,19 +122,17 @@ h2 {
 }
 
 #reserveSection {
-  margin-top: 15px;
-  
+  margin-top: 30px;
 }
 
 #reserveList {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-  margin: 70px;
 }
 
 .reserve-pokemon-box {
-  flex: 0 0 calc(33.333% - 10px);
+  flex: 0 0 calc(33% - 10px);
   margin: 5px;
   box-sizing: border-box;
   text-align: center;
@@ -143,8 +140,9 @@ h2 {
 }
 
 .reserve-pokemon-box img {
-  width: 30%;
+  width: 20%;
   height: auto;
+
 }
 
 @media only screen and (max-width: 600px) {
@@ -152,5 +150,6 @@ h2 {
     flex: 0 0 calc(50% - 10px);
   }
 }
+
 
 
