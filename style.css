@@ -2,6 +2,7 @@ body {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   background-image: url(slike/stars.webp);
   background-size: cover;
+  background-position: center;
   margin: 0;
   padding: 20px;
   text-align: center;
@@ -55,7 +56,7 @@ h2 {
   justify-content: space-around;
   align-items: center;
   width: 400px;
-  background-color: rgb(58, 56, 56);
+  background-color: rgb(10, 10, 10);
   border-radius: 15px;
   z-index: 5;
   opacity: 1; 
@@ -150,9 +151,9 @@ button {
   text-align: center;
   overflow: hidden;
   color: rgb(94, 184, 49);
-  background-color: blueviolet;border-radius: 20px;
-
-  
+  background-color: blueviolet;
+  border-radius: 20px;
+  opacity: 0.6; 
 }
 
 .reserve-pokemon-box img {
