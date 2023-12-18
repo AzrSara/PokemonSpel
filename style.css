@@ -8,6 +8,9 @@ body {
   position: relative;
 }
 
+
+
+
 label {
   color: rgb(168, 17, 17);
   display: block;
@@ -42,18 +45,27 @@ h2 {
   left: 50%;
   transform: translateX(-50%);
   z-index: 5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 #overlay {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    width: 400px;
-    background-color: rgb(58, 56, 56);
-    border-radius: 15px;
-    z-index: 5;
-    opacity: 1; 
-  }
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 400px;
+  background-color: rgb(58, 56, 56);
+  border-radius: 15px;
+  z-index: 5;
+  opacity: 1; 
+  
+}
+
+#overlay-container h2 {
+  color: #fff; 
+  margin-bottom: 10px; 
+}
 
 .pokemon-box-overlay {
   font-family: monospace;
@@ -97,7 +109,7 @@ button {
 }
 
 #pokemonDetails {
-  display: none; /* Add this line to hide the container initially */
+  display: none; 
   margin-top: 10px;
   text-shadow: 1px 2px 8px rgb(17, 57, 29);
   color: rgb(94, 184, 49);
@@ -120,13 +132,15 @@ button {
 }
 
 #reserveSection {
-  margin-top: 30px;
+  margin-top: 15px;
 }
 
 #reserveList {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
+  width: 400px;
+  
 }
 
 .reserve-pokemon-box {
@@ -142,8 +156,8 @@ button {
 }
 
 .reserve-pokemon-box img {
-  width: 20%;
-  height: auto;
+  width: 30%;
+  height: 30px;
 
 }
 
@@ -151,7 +165,10 @@ button {
   .reserve-pokemon-box {
     flex: 0 0 calc(50% - 10px);
   }
-}
+} 
+
+
+
 
 
 

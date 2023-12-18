@@ -1,4 +1,3 @@
-
 export function showMessage(message, isError = false, isRemainingPokemonMessage = false) {
 	const messageContainer = document.getElementById('messageContainer');
 	messageContainer.textContent = message;
@@ -77,4 +76,7 @@ export function showMessage(message, isError = false, isRemainingPokemonMessage 
 	  overlay.appendChild(pokemonBox);
 	});
   }
+  
+
+
   
