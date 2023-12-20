@@ -1,3 +1,4 @@
+
 export function showMessage(message, isError = false, isRemainingPokemonMessage = false) {
 	const messageContainer = document.getElementById('messageContainer');
 	messageContainer.textContent = message;
@@ -35,6 +36,8 @@ export function showMessage(message, isError = false, isRemainingPokemonMessage 
 	overlayContainer.style.display = team.length > 0 ? 'flex' : 'none';
 	if (team.length > 0) {
 	  updateOverlayContent(team, overlay);
+	} else {
+	  overlay.innerHTML = ''; // Töm overlayen om teamet är tomt
 	}
   }
   
@@ -47,7 +50,7 @@ export function showMessage(message, isError = false, isRemainingPokemonMessage 
 	  pokemonBox.classList.add('reserve-pokemon-box');
   
 	  pokemonBox.innerHTML = `<p>${pokemon.nickname ? `${pokemon.nickname} (${pokemon.name})` : pokemon.name}</p>
-							  <img src="${pokemon.image}" alt="${pokemon.name} Image">`;
+								<img src="${pokemon.image}" alt="${pokemon.name} Image">`;
   
 	  pokemonBox.addEventListener('click', () => {
 		reserve.splice(index, 1);
@@ -66,7 +69,7 @@ export function showMessage(message, isError = false, isRemainingPokemonMessage 
 	  pokemonBox.classList.add('pokemon-box-overlay');
   
 	  pokemonBox.innerHTML = `<p>${pokemon.nickname ? `${pokemon.nickname} (${pokemon.name})` : pokemon.name}</p>
-							  <img src="${pokemon.image}" alt="${pokemon.name} Image">`;
+								<img src="${pokemon.image}" alt="${pokemon.name} Image">`;
   
 	  pokemonBox.addEventListener('click', () => {
 		team.splice(index, 1);
@@ -76,6 +79,16 @@ export function showMessage(message, isError = false, isRemainingPokemonMessage 
 	  overlay.appendChild(pokemonBox);
 	});
   }
+  
+  
+
+
+  
+
+
+  
+
+
   
 
 
