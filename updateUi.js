@@ -1,4 +1,4 @@
-
+// updateUi.js
 export function showMessage(message, isError = false, isRemainingPokemonMessage = false) {
 	const messageContainer = document.getElementById('messageContainer');
 	messageContainer.textContent = message;
@@ -21,9 +21,9 @@ export function showMessage(message, isError = false, isRemainingPokemonMessage 
   }
   
   export function updatePokemonBoxes(team, overlayContainer) {
-	const pokemonBoxes = document.querySelectorAll('.pokemon-box');
 	const overlay = document.getElementById('overlay');
   
+	const pokemonBoxes = document.querySelectorAll('.pokemon-box-overlay');
 	pokemonBoxes.forEach((box, index) => {
 	  if (index < team.length) {
 		const { name, nickname, image } = team[index];
@@ -35,9 +35,10 @@ export function showMessage(message, isError = false, isRemainingPokemonMessage 
   
 	overlayContainer.style.display = team.length > 0 ? 'flex' : 'none';
 	if (team.length > 0) {
-	  updateOverlayContent(team, overlay);
+	  updateOverlayContent(team, overlay, overlayContainer); 
 	} else {
-	  overlay.innerHTML = ''; // Töm overlayen om teamet är tomt
+	  overlay.innerHTML = ''; 
+	  overlayContainer.style.display = 'none'; 
 	}
   }
   
@@ -61,7 +62,7 @@ export function showMessage(message, isError = false, isRemainingPokemonMessage 
 	});
   }
   
-  export function updateOverlayContent(team, overlay) {
+  export function updateOverlayContent(team, overlay, overlayContainer) { 
 	overlay.innerHTML = '';
   
 	team.forEach((pokemon, index) => {
@@ -73,12 +74,15 @@ export function showMessage(message, isError = false, isRemainingPokemonMessage 
   
 	  pokemonBox.addEventListener('click', () => {
 		team.splice(index, 1);
-		updatePokemonBoxes(team, overlay);
+		updatePokemonBoxes(team, overlayContainer); 
 	  });
   
 	  overlay.appendChild(pokemonBox);
 	});
   }
+  
+  
+  
   
   
 

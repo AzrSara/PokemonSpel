@@ -11,6 +11,7 @@ export function fetchPokemonData(url) {
       .then(data => data.results.map(pokemon => pokemon.name).sort());
   }
   
+  
 
   
   

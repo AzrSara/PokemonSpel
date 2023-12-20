@@ -1,4 +1,4 @@
-
+// main.js
 import { fetchPokemonData, fetchPokemonList } from './ajax.js';
 import {
   showMessage,
@@ -59,14 +59,14 @@ document.addEventListener('DOMContentLoaded', function () {
     if (selectedPokemon) {
       const selectedPokemonImage = pokemonImage.src;
       const nickname = nicknameInput.value.trim();
-
+  
       if (team.length < 3) {
         const newPokemon = { name: selectedPokemon, nickname: nickname, image: selectedPokemonImage };
         team.push(newPokemon);
         updatePokemonBoxes(team, overlayContainer);
-
-        overlayContainer.style.display = team.length > 0 ? 'flex' : 'none';
-
+  
+        overlayContainer.style.display = team.length > 0 ? 'flex' : 'none'; 
+  
         if (team.length < 3) {
           const remainingPokemon = 3 - team.length;
           showMessage(`Add ${remainingPokemon} more Pokémon to complete your team.`, false, true);
@@ -78,22 +78,20 @@ document.addEventListener('DOMContentLoaded', function () {
       showMessage('Please select a Pokémon before adding to team.', true);
     }
   }
+  
 
   function handleOverlayContainerClick(event) {
     if (event.target === overlayContainer) {
       overlayContainer.style.display = 'none';
 
-      // Återställ tillståndet om teamet är tomt
+      
       if (team.length === 0) {
         pokemonDetails.style.display = 'none';
-        overlayContainer.style.display = 'none';
-        pokemonInput.value = ''; // Återställ sökfältet
+        pokemonInput.value = ''; 
 
         // Återställ synligheten och innehållet i overlay-boxarna
-        const pokemonBoxes = document.querySelectorAll('.pokemon-box-overlay');
-        pokemonBoxes.forEach(box => {
-          box.innerHTML = '';
-        });
+        const overlay = document.getElementById('overlay');
+        overlay.innerHTML = '';
 
         // Återställ synligheten i huvudsektionen
         const reserveSection = document.getElementById('reserveSection');
@@ -121,10 +119,14 @@ document.addEventListener('DOMContentLoaded', function () {
           pokemonImage.style.height = '130px';
 
           pokemonDetails.style.display = 'block';
+          overlayContainer.style.display = team.length > 0 ? 'flex' : 'none';
+          updateOverlayContent(team, document.getElementById('overlay'));
         });
     });
   });
 });
+
+
 
 
 
