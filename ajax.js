@@ -6,7 +6,7 @@ export async function fetchPokemonData(url) {
     return data;
   } catch (error) {
     console.error('Error fetching Pokemon data:', error);
-    throw error; // Rethrow the error to be caught by the caller
+    throw error;
   }
 }
 
@@ -17,7 +17,7 @@ export async function fetchPokemonList() {
     return data.results.map(pokemon => pokemon.name).sort();
   } catch (error) {
     console.error('Error fetching Pokemon list:', error);
-    throw error; // Rethrow the error to be caught by the caller
+    throw error; 
   }
 }
 

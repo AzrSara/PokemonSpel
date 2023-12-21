@@ -51,13 +51,13 @@ document.addEventListener('DOMContentLoaded', async function () {
           showMessage('Invalid Pokémon. Please enter a valid Pokémon name.', true);
         }
       } catch (error) {
-        console.error('Error fetching Pokemon data:', error);
-        showMessage('Error fetching Pokémon data. Please try again.', true);
+        console.error('Can not find Pokemon:', error);
+        showMessage('Not a Pokemon. Please try again.', true);
       }
     });
   } catch (error) {
-    console.error('Error fetching Pokemon list:', error);
-    showMessage('Error fetching Pokémon list. Please try again.', true);
+    console.error('Can not find Pokemon:', error);
+    showMessage('Not a Pokemon. Please try again.', true);
   }
 
   addPokemonButton.addEventListener('click', hideOverlay);
