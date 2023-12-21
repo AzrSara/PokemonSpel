@@ -1,4 +1,5 @@
 // updateUi.js
+
 export function showMessage(message, isError = false, isRemainingPokemonMessage = false) {
 	const messageContainer = document.getElementById('messageContainer');
   
@@ -39,13 +40,19 @@ export function showMessage(message, isError = false, isRemainingPokemonMessage 
 		}
 	  });
   
-	  overlayContainer.style.display = team.length > 0 ? 'flex' : 'none';
-	  if (team.length > 0) {
-		updateOverlayContent(team, overlay, overlayContainer);
+	  if (overlayContainer) {
+		overlayContainer.style.display = team.length > 0 ? 'flex' : 'none';
+		if (team.length > 0) {
+		  updateOverlayContent(team, overlay, overlayContainer);
+		} else {
+		  overlay.innerHTML = '';
+		  overlayContainer.style.display = 'none';
+		}
 	  } else {
-		overlay.innerHTML = '';
-		overlayContainer.style.display = 'none';
+		console.error('Error: overlayContainer is undefined.');
 	  }
+	} else {
+	  console.error('Error: overlay is undefined.');
 	}
   }
   
@@ -91,6 +98,7 @@ export function showMessage(message, isError = false, isRemainingPokemonMessage 
 	  });
 	}
   }
+  
   
   
   

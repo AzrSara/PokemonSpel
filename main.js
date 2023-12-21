@@ -1,4 +1,5 @@
 // main.js
+
 import { fetchPokemonData, fetchPokemonList } from './ajax.js';
 import {
   showMessage,
@@ -125,7 +126,7 @@ document.addEventListener('DOMContentLoaded', async function () {
   }
 
   function showOverlay() {
-    updateOverlayContent(team, document.getElementById('overlay'));
+    updateOverlayContent(team, document.getElementById('overlay'), overlayContainer);
     overlayContainer.style.display = team.length > 0 ? 'flex' : 'none';
   }
 
@@ -133,6 +134,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     overlayContainer.style.display = 'none';
   }
 });
+
 
 
 
