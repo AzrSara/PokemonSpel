@@ -85,6 +85,32 @@ export function showMessage(message, isError = false, isRemainingPokemonMessage 
   
   
   
+  
+  
+  
+  
+
+
+  
+
+
+  
+
+
+  
+
+
+  
+  
+  
+  
+
+
+  
+  
+  
+  
+  
 
 
   

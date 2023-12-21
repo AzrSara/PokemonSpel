@@ -21,6 +21,13 @@ document.addEventListener('DOMContentLoaded', function () {
   const team = [];
   const reserve = [];
 
+  overlayContainer.style.display = 'none';
+
+  
+  const reserveSection = document.getElementById('reserveSection');
+  reserveSection.style.display = 'block';
+
+  
   function showMessage(message, isError = false, isRemainingPokemonMessage = false) {
     messageContainer.textContent = message;
 
@@ -125,7 +132,6 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 });
-
 
 
 
