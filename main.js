@@ -18,16 +18,16 @@ document.addEventListener('DOMContentLoaded', function () {
   const overlayContainer = document.getElementById('overlay-container');
   const messageContainer = document.getElementById('messageContainer');
   const nicknameInput = document.getElementById('nicknameInput');
+  const myTeamButton = document.getElementById('myTeamButton');
+  const addPokemonButton = document.getElementById('addPokemonButton');
   const team = [];
   const reserve = [];
 
   overlayContainer.style.display = 'none';
 
-  
   const reserveSection = document.getElementById('reserveSection');
   reserveSection.style.display = 'block';
 
-  
   function showMessage(message, isError = false, isRemainingPokemonMessage = false) {
     messageContainer.textContent = message;
 
@@ -56,6 +56,7 @@ document.addEventListener('DOMContentLoaded', function () {
       const newPokemon = { name: selectedPokemon, nickname: nickname, image: selectedPokemonImage };
       reserve.push(newPokemon);
       updateReserveList(reserve);
+      showOverlay();
     } else {
       showMessage('Please select a Pokémon before adding to reserve.', true);
     }
@@ -66,14 +67,14 @@ document.addEventListener('DOMContentLoaded', function () {
     if (selectedPokemon) {
       const selectedPokemonImage = pokemonImage.src;
       const nickname = nicknameInput.value.trim();
-  
+
       if (team.length < 3) {
         const newPokemon = { name: selectedPokemon, nickname: nickname, image: selectedPokemonImage };
         team.push(newPokemon);
         updatePokemonBoxes(team, overlayContainer);
-  
-        overlayContainer.style.display = team.length > 0 ? 'flex' : 'none'; 
-  
+
+        overlayContainer.style.display = team.length > 0 ? 'flex' : 'none';
+
         if (team.length < 3) {
           const remainingPokemon = 3 - team.length;
           showMessage(`Add ${remainingPokemon} more Pokémon to complete your team.`, false, true);
@@ -81,30 +82,36 @@ document.addEventListener('DOMContentLoaded', function () {
           showMessage('Team is full. Remove a Pokémon before adding more.');
         }
       }
+      showOverlay(); 
     } else {
       showMessage('Please select a Pokémon before adding to team.', true);
     }
   }
-  
 
   function handleOverlayContainerClick(event) {
     if (event.target === overlayContainer) {
       overlayContainer.style.display = 'none';
 
-      
       if (team.length === 0) {
         pokemonDetails.style.display = 'none';
-        pokemonInput.value = ''; 
+        pokemonInput.value = '';
 
-        // Återställ synligheten och innehållet i overlay-boxarna
         const overlay = document.getElementById('overlay');
         overlay.innerHTML = '';
 
-        // Återställ synligheten i huvudsektionen
         const reserveSection = document.getElementById('reserveSection');
         reserveSection.style.display = 'block';
       }
     }
+  }
+
+  function showOverlay() {
+    updateOverlayContent(team, document.getElementById('overlay'));
+    overlayContainer.style.display = team.length > 0 ? 'flex' : 'none';
+  }
+
+  function hideOverlay() {
+    overlayContainer.style.display = 'none';
   }
 
   addToReserveButton.addEventListener('click', addToReserve);
@@ -118,21 +125,30 @@ document.addEventListener('DOMContentLoaded', function () {
       const selectedPokemon = pokemonInput.value.toLowerCase();
       fetchPokemonData(`https://pokeapi.co/api/v2/pokemon/${selectedPokemon}`)
         .then(pokemonData => {
-          pokemonName.textContent = `Name: ${pokemonData.name}`;
+          if (pokemonData.name) {
+            pokemonName.textContent = `Name: ${pokemonData.name}`;
 
-          pokemonImage.src = pokemonData.sprites.front_default;
-          pokemonImage.alt = `${pokemonData.name} Image`;
-          pokemonImage.style.width = '130px';
-          pokemonImage.style.height = '130px';
+            pokemonImage.src = pokemonData.sprites.front_default;
+            pokemonImage.alt = `${pokemonData.name} Image`;
+            pokemonImage.style.width = '130px';
+            pokemonImage.style.height = '130px';
 
-          pokemonDetails.style.display = 'block';
-          overlayContainer.style.display = team.length > 0 ? 'flex' : 'none';
-          updateOverlayContent(team, document.getElementById('overlay'));
+            pokemonDetails.style.display = 'block';
+            showOverlay(); 
+          } else {
+            showMessage('Invalid Pokémon. Please enter a valid Pokémon name.', true);
+          }
+        })
+        .catch(error => {
+          console.error('Error fetching Pokemon data:', error);
+          showMessage('Error fetching Pokémon data. Please try again.', true);
         });
     });
   });
-});
 
+  addPokemonButton.addEventListener('click', hideOverlay);
+  myTeamButton.addEventListener('click', showOverlay);
+});
 
 
 
