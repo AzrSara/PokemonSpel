@@ -7,7 +7,7 @@ import {
   updateOverlayContent
 } from './updateUi.js';
 
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', async function () {
   const pokemonInput = document.getElementById('pokemonInput');
   const pokemonList = document.getElementById('pokemonList');
   const pokemonDetails = document.getElementById('pokemonDetails');
@@ -28,25 +28,44 @@ document.addEventListener('DOMContentLoaded', function () {
   const reserveSection = document.getElementById('reserveSection');
   reserveSection.style.display = 'block';
 
-  function showMessage(message, isError = false, isRemainingPokemonMessage = false) {
-    messageContainer.textContent = message;
+  try {
+    const pokemonNames = await fetchPokemonList();
+    pokemonList.innerHTML = pokemonNames.map(name => `<option value="${name}">`).join('');
 
-    if (isError) {
-      messageContainer.style.backgroundColor = '#f44336';
-      messageContainer.style.color = 'white';
-    } else if (isRemainingPokemonMessage) {
-      messageContainer.style.backgroundColor = '#333';
-      messageContainer.style.color = '#ff9800';
-    } else {
-      messageContainer.style.backgroundColor = '#4CAF50';
-      messageContainer.style.color = 'white';
-    }
+    pokemonInput.addEventListener('input', async function () {
+      const selectedPokemon = pokemonInput.value.toLowerCase();
+      try {
+        const pokemonData = await fetchPokemonData(`https://pokeapi.co/api/v2/pokemon/${selectedPokemon}`);
 
-    messageContainer.style.display = 'block';
-    setTimeout(() => {
-      messageContainer.style.display = 'none';
-    }, 8000);
+        if (pokemonData.name) {
+          pokemonName.textContent = `Name: ${pokemonData.name}`;
+
+          pokemonImage.src = pokemonData.sprites.front_default;
+          pokemonImage.alt = `${pokemonData.name} Image`;
+          pokemonImage.style.width = '130px';
+          pokemonImage.style.height = '130px';
+
+          pokemonDetails.style.display = 'block';
+          showOverlay();
+        } else {
+          showMessage('Invalid Pokémon. Please enter a valid Pokémon name.', true);
+        }
+      } catch (error) {
+        console.error('Error fetching Pokemon data:', error);
+        showMessage('Error fetching Pokémon data. Please try again.', true);
+      }
+    });
+  } catch (error) {
+    console.error('Error fetching Pokemon list:', error);
+    showMessage('Error fetching Pokémon list. Please try again.', true);
   }
+
+  addPokemonButton.addEventListener('click', hideOverlay);
+  myTeamButton.addEventListener('click', showOverlay);
+
+  addToReserveButton.addEventListener('click', addToReserve);
+  addToTeamButton.addEventListener('click', addToTeam);
+  document.addEventListener('click', handleOverlayContainerClick);
 
   function addToReserve() {
     const selectedPokemon = pokemonName.textContent;
@@ -82,7 +101,7 @@ document.addEventListener('DOMContentLoaded', function () {
           showMessage('Team is full. Remove a Pokémon before adding more.');
         }
       }
-      showOverlay(); 
+      showOverlay();
     } else {
       showMessage('Please select a Pokémon before adding to team.', true);
     }
@@ -113,42 +132,8 @@ document.addEventListener('DOMContentLoaded', function () {
   function hideOverlay() {
     overlayContainer.style.display = 'none';
   }
-
-  addToReserveButton.addEventListener('click', addToReserve);
-  addToTeamButton.addEventListener('click', addToTeam);
-  document.addEventListener('click', handleOverlayContainerClick);
-
-  fetchPokemonList().then(pokemonNames => {
-    pokemonList.innerHTML = pokemonNames.map(name => `<option value="${name}">`).join('');
-
-    pokemonInput.addEventListener('input', function () {
-      const selectedPokemon = pokemonInput.value.toLowerCase();
-      fetchPokemonData(`https://pokeapi.co/api/v2/pokemon/${selectedPokemon}`)
-        .then(pokemonData => {
-          if (pokemonData.name) {
-            pokemonName.textContent = `Name: ${pokemonData.name}`;
-
-            pokemonImage.src = pokemonData.sprites.front_default;
-            pokemonImage.alt = `${pokemonData.name} Image`;
-            pokemonImage.style.width = '130px';
-            pokemonImage.style.height = '130px';
-
-            pokemonDetails.style.display = 'block';
-            showOverlay(); 
-          } else {
-            showMessage('Invalid Pokémon. Please enter a valid Pokémon name.', true);
-          }
-        })
-        .catch(error => {
-          console.error('Error fetching Pokemon data:', error);
-          showMessage('Error fetching Pokémon data. Please try again.', true);
-        });
-    });
-  });
-
-  addPokemonButton.addEventListener('click', hideOverlay);
-  myTeamButton.addEventListener('click', showOverlay);
 });
+
 
 
 

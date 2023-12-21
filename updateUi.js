@@ -1,25 +1,29 @@
 // updateUi.js
 export function showMessage(message, isError = false, isRemainingPokemonMessage = false) {
 	const messageContainer = document.getElementById('messageContainer');
-	if (messageContainer) {
-	  messageContainer.textContent = message;
   
-	  if (isError) {
-		messageContainer.style.backgroundColor = '#f44336';
-		messageContainer.style.color = 'white';
-	  } else if (isRemainingPokemonMessage) {
-		messageContainer.style.backgroundColor = '#333';
-		messageContainer.style.color = '#ff9800';
-	  } else {
-		messageContainer.style.backgroundColor = '#4CAF50';
-		messageContainer.style.color = 'white';
-	  }
-  
-	  messageContainer.style.display = 'block';
-	  setTimeout(() => {
-		messageContainer.style.display = 'none';
-	  }, 8000);
+	if (!messageContainer) {
+	  console.error('Error: messageContainer not found');
+	  return;
 	}
+  
+	messageContainer.textContent = message;
+  
+	if (isError) {
+	  messageContainer.style.backgroundColor = '#f44336';
+	  messageContainer.style.color = 'white';
+	} else if (isRemainingPokemonMessage) {
+	  messageContainer.style.backgroundColor = '#333';
+	  messageContainer.style.color = '#ff9800';
+	} else {
+	  messageContainer.style.backgroundColor = '#4CAF50';
+	  messageContainer.style.color = 'white';
+	}
+  
+	messageContainer.style.display = 'block';
+	setTimeout(() => {
+	  messageContainer.style.display = 'none';
+	}, 8000);
   }
   
   export function updatePokemonBoxes(team, overlayContainer) {
